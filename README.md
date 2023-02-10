@@ -54,9 +54,9 @@ ssh -i .private/hello_world_vm.pem ubuntu@$(terraform output -raw ec2_instance_p
 ```
 * Cleanup
 
-    🚨 Make sure to delete all **Service** (ClusterIP, LoadBalancer, etc) and Deployments before proceed to Clean Up 🚨
+    🚨 Make sure to delete all **Service** (ClusterIP, LoadBalancer, etc) and Deployments before proceed to Clean Up
 
-    🚨 Or terraform cannot complete de destroying process 🚨
+    🚨 Or terraform cannot complete de destroying process
 
     ```bash
     terraform destroy
