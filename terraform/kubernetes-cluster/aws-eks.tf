@@ -10,9 +10,6 @@ module "eks" {
 
   eks_managed_node_group_defaults = {
     ami_type = var.ami_type
-    # attach_cluster_primary_security_group = true
-    # Disabling and using externally provided security groups
-    # create_security_group = false
 
     instance_types = [var.instance_type]
   }
@@ -42,6 +39,25 @@ module "eks" {
       ]
     }
   }
+
+  manage_aws_auth_configmap = true
+
+  aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::229475678484:user/husni-development"
+      username = "husni-development"
+      groups   = ["system:masters"]
+    },
+    {
+      userarn  = "arn:aws:iam::229475678484:user/idan-development"
+      username = "idan-development"
+      groups   = ["system:masters"]
+    },
+  ]
+
+  aws_auth_accounts = [
+    "229475678484",
+  ]
 
   tags = {
     Name = local.cluster_name
