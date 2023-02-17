@@ -72,13 +72,17 @@ minikube start --kubernetes-version=v1.24.9
 minikube tunnel
 ```
 
-## SSH to VM
+## 🖥 SSH to VM
 ```bash
 # All private key is located in .private folder (learning-cluster/infrastructure/.private)
 chmod 400 .private/hello_world_vm.pem
 
 ssh -i .private/hello_world_vm.pem ubuntu@$(terraform output -raw ec2_instance_public_ip)
 ```
+
+## 💥 Troubleshoot Results
+
+* You can find the troubleshoot result in [troubleshoots](troubleshoots/)
 
 ## 📚 References
 
