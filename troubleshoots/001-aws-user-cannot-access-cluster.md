@@ -35,7 +35,7 @@ data:
 
 ## 🚀 Improvment Ideas
 
-* Need to look out how to inject roles/user to `aws-auth` configmap after cluster creation
+* ~~Need to look out how to inject roles/user to `aws-auth` configmap after cluster creation~~ [Fixed here](https://github.com/project-garden/project-garden-infra/commit/71aff1b680d6f3109ccdfdf892acbbd32f9d9356)
 
 ## 📖 References
 
