@@ -5,18 +5,6 @@ variable "region" {
   default     = "ap-southeast-1"
 }
 
-# variable "credentials" {
-#   description = "AWS credentials file"
-#   type        = string
-#   default     = "/Users/husni/.aws/credentials"
-# }
-
-# variable "profile" {
-#   description = "AWS CLI profile"
-#   type        = string
-#   default     = "husni-development"
-# }
-
 variable "ami_type" {
   description = "AMI type of node/vm"
   type        = string
