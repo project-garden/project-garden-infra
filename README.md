@@ -1,17 +1,19 @@
-# 🪴 Project Garden Infrastructure Resources
+# 🏗 Project Garden Infrastructure Resources
 
-This will setup an elastic kuberentes cluster with 2 node groups, an isolated vpc, and their security groups. The infrastructure resources will grow with time
+Infrastructure repository for `Project Garden`
 
 ## ✅ Pre-requisites
 
 * aws-cli [[install](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html), [quick setup](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html), [docs](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)]
 * gcloud cli [[install](https://cloud.google.com/sdk/docs/install-sdk), [quick setup](https://cloud.google.com/sdk/docs/initializing), [docs](https://cloud.google.com/sdk/gcloud)]
 * kubectl [[install](https://kubernetes.io/docs/tasks/tools/), [docs](https://kubernetes.io/docs/home/)]
-* helm [[install](https://helm.sh/docs/intro/install/), [docs](https://helm.sh/docs/)]
 * terraform [[install](https://developer.hashicorp.com/terraform/downloads), [docs](https://developer.hashicorp.com/terraform/docs)]
-* minikube(dev) [[install](https://minikube.sigs.k8s.io/docs/start/), [docs](https://minikube.sigs.k8s.io/docs/)]
+* minikube(`dev`) [[install](https://minikube.sigs.k8s.io/docs/start/), [docs](https://minikube.sigs.k8s.io/docs/)]
+<!-- * helm [[install](https://helm.sh/docs/intro/install/), [docs](https://helm.sh/docs/)] -->
 
-## 🤔 How To Use?
+## 🆃 Terraform
+
+### 🤔 How To Use?
 
 * Get AWS Access Key and Secret Key from `Google Secret Manager`
 
@@ -29,6 +31,18 @@ terraform init
 terraform apply
 ```
 
+* Cleanup
+
+```bash
+# 🚨 Make sure to delete all k8s ervices
+# 🚨 and deployments before proceed to Clean Up.
+# 🚨 Otherwise, terraform cannot complete de destroying process
+
+terraform destroy
+```
+
+## ⛴ Kubernetes (kubectl)
+
 * Configure `kubectl`
 
 ```bash
@@ -45,23 +59,6 @@ aws eks update-kubeconfig \
 kubectl cluster-info
 ```
 
-* (**Additional**) SSH to VM
-```bash
-# All private key is located in .private folder (learning-cluster/infrastructure/.private)
-chmod 400 .private/hello_world_vm.pem
-
-ssh -i .private/hello_world_vm.pem ubuntu@$(terraform output -raw ec2_instance_public_ip)
-```
-* Cleanup
-
-    🚨 Make sure to delete all **Service** (ClusterIP, LoadBalancer, etc) and Deployments before proceed to Clean Up
-
-    🚨 Or terraform cannot complete de destroying process
-
-    ```bash
-    terraform destroy
-    ```
-
 ## 🛟 Minikube for Development Environment infra
 Other way to create learning cluster is using `minikube`.
 
@@ -74,6 +71,18 @@ minikube start --kubernetes-version=v1.24.9
 # DON'T CLOSE THE TERMINAL!
 minikube tunnel
 ```
+
+## 🖥 SSH to VM
+```bash
+# All private key is located in .private folder (learning-cluster/infrastructure/.private)
+chmod 400 .private/hello_world_vm.pem
+
+ssh -i .private/hello_world_vm.pem ubuntu@$(terraform output -raw ec2_instance_public_ip)
+```
+
+## 💥 Troubleshoot Results
+
+* You can find the troubleshoot result in [troubleshoots](troubleshoots/)
 
 ## 📚 References
 

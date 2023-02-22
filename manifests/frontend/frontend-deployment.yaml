@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-frontend
+  name: frontend
   labels:
-    app: web-frontend
+    app: frontend
   namespace: development
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web-frontend
+      app: frontend
   template:
     metadata:
       labels:
-        app: web-frontend
+        app: frontend
         version: v1
     spec:
       containers:
-        - image: gcr.io/tetratelabs/web-frontend:1.0.0
+        - image: hazunanafaru/project-garden-frontend:latest
           imagePullPolicy: Always
-          name: web-frontend
+          name: frontend
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           env:
-            - name: CUSTOMER_SERVICE_URL
-              value: 'http://customers.development.svc.cluster.local'
+            - name: ENV
+              value: 'production'
           resources:
             limits:
               memory: 512Mi
